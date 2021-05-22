@@ -15,7 +15,7 @@ class ContactsPage extends Component {
   render() {
     return (
       <div>
-        {/* <h2>Phonebook</h2> */}
+        <h2>Phonebook</h2>
         <Form />
         <h2>Contacts</h2>
         <Filter />

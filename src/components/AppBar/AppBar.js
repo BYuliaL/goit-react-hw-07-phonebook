@@ -1,8 +1,9 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import Navigation from '../Navigations/Navigation';
 import AuthNav from '../AuthNav/AuthNav';
 import UserMenu from '../UserMenu/UserMenu';
+import authSelectors from '../../redux/auth/auth-selectors';
 
 const styles = {
   header: {
@@ -20,8 +21,8 @@ const AppBar = ({ isAuthenticated }) => (
   </header>
 );
 
-// const mapStateToProps = state => ({
-//   isAuthenticated: authSelectors.getIsAuthenticated(state),
-// });
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+});
 
-export default AppBar;
+export default connect(mapStateToProps)(AppBar);

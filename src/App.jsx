@@ -1,30 +1,58 @@
-import { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-// import { connect } from 'react-redux';
+import { Component, Suspense, lazy } from 'react';
+import { Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import HomePage from './pages/HomePage';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import ContactsPage from './pages/ContactsPage';
-import AppBar from './components/AppBar/AppBar';
+import AppBar from './components/AppBar';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRouter from './components/PublicRouter';
+
+import { authOperations } from './redux/auth';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 
 class App extends Component {
   state = {};
+
+  componentDidMount() {
+    this.props.onGetCurretnUser();
+  }
 
   render() {
     return (
       <div>
         <AppBar />
-
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/contacts" component={ContactsPage} />
-        </Switch>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Switch>
+            <PublicRouter exact path="/" component={HomePage} />
+            <PublicRouter
+              path="/register"
+              restricted
+              redirectTo="/contacts"
+              component={RegisterPage}
+            />
+            <PublicRouter
+              path="/login"
+              restricted
+              redirectTo="/contacts"
+              component={LoginPage}
+            />
+            <PrivateRoute
+              path="/contacts"
+              redirectTo="/login"
+              component={ContactsPage}
+            />
+          </Switch>
+        </Suspense>
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = {
+  onGetCurretnUser: authOperations.getCurrentUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);

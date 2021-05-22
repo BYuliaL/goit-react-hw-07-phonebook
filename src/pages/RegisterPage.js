@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { authOperations } from '../redux/auth';
+import { connect } from 'react-redux';
+import { authOperations } from '../redux/auth';
 
 const styles = {
   form: {
-    width: 320,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    // width: 320,
   },
   label: {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'column',
     marginBottom: 15,
   },
@@ -37,7 +43,7 @@ class RegisterPage extends Component {
 
     return (
       <div>
-        <h1>Страница регистрации</h1>
+        <h1>Registration page</h1>
 
         <form
           onSubmit={this.handleSubmit}
@@ -55,7 +61,7 @@ class RegisterPage extends Component {
           </label>
 
           <label style={styles.label}>
-            Email
+            Mail
             <input
               type="email"
               name="email"
@@ -65,7 +71,7 @@ class RegisterPage extends Component {
           </label>
 
           <label style={styles.label}>
-            Parol
+            Password
             <input
               type="password"
               name="password"
@@ -74,15 +80,15 @@ class RegisterPage extends Component {
             />
           </label>
 
-          <button type="submit">Зарегистрироваться</button>
+          <button type="submit">Register</button>
         </form>
       </div>
     );
   }
 }
 
-// const mapDispatchToProps = {
-//   onRegister: authOperations.register,
-// };
+const mapDispatchToProps = {
+  onRegister: authOperations.register,
+};
 
-export default RegisterPage;
+export default connect(null, mapDispatchToProps)(RegisterPage);

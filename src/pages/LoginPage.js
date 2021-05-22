@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { authOperations } from '../redux/auth';
+import { connect } from 'react-redux';
+import { authOperations } from '../redux/auth';
 
 const styles = {
   form: {
-    width: 320,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    // width: 320,
   },
   label: {
     display: 'flex',
@@ -54,7 +58,7 @@ class LoginPage extends Component {
           </label>
 
           <label style={styles.label}>
-            Parol
+            Password
             <input
               type="password"
               name="password"
@@ -63,15 +67,15 @@ class LoginPage extends Component {
             />
           </label>
 
-          <button type="submit">LogIn</button>
+          <button type="submit">Log In</button>
         </form>
       </div>
     );
   }
 }
 
-// const mapDispatchToProps = {
-//   onLogin: authOperations.logIn,
-// };
+const mapDispatchToProps = {
+  onLogin: authOperations.logIn,
+};
 
-export default LoginPage;
+export default connect(null, mapDispatchToProps)(LoginPage);
