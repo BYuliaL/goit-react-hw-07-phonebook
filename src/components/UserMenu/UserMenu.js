@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
-import defaultAvatar from './default-avatar.png';
+import defaultAvatar from './avatardefault.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 
 const styles = {
   container: {
@@ -13,6 +15,7 @@ const styles = {
   name: {
     fontWeight: 700,
     marginRight: 12,
+    color: '#fff',
   },
 };
 
@@ -20,9 +23,9 @@ const UserMenu = ({ avatar, name, onLogout }) => (
   <div style={styles.container}>
     <img src={avatar} alt="" width="32" style={styles.avatar} />
     <span style={styles.name}>Welcome, {name}</span>
-    <button type="button" onClick={onLogout}>
+    <Button type="button" onClick={onLogout}>
       Logout
-    </button>
+    </Button>
   </div>
 );
 

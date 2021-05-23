@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authOperations } from '../redux/auth';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Form } from 'react-bootstrap';
 
 const styles = {
+  title: {
+    color: 'white',
+  },
   form: {
     display: 'flex',
     alignItems: 'center',
@@ -11,11 +16,8 @@ const styles = {
     // width: 320,
   },
   label: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    marginBottom: 15,
+    color: 'white',
+    fontSize: '16px',
   },
 };
 
@@ -43,45 +45,51 @@ class RegisterPage extends Component {
 
     return (
       <div>
-        <h1>Registration page</h1>
+        <h1 style={styles.title}>Registration page</h1>
 
-        <form
+        <Form
           onSubmit={this.handleSubmit}
           style={styles.form}
           autoComplete="off"
         >
-          <label style={styles.label}>
-            Name
-            <input
+          <Form.Group controlId="formName">
+            <Form.Label style={styles.label}>Name</Form.Label>
+            <Form.Control
               type="text"
+              placeholder="Name"
               name="name"
               value={name}
               onChange={this.handleChange}
-            />
-          </label>
+            ></Form.Control>
+          </Form.Group>
 
-          <label style={styles.label}>
-            Mail
-            <input
+          <Form.Group controlId="formEmail">
+            <Form.Label style={styles.label}>Mail</Form.Label>
+            <Form.Control
               type="email"
+              placeholder="Example@mail.com"
               name="email"
               value={email}
               onChange={this.handleChange}
-            />
-          </label>
+            ></Form.Control>
+            <Form.Text style={{ color: '#07010c' }}>
+              *We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-          <label style={styles.label}>
-            Password
-            <input
+          <Form.Group controlId="formPassword">
+            <Form.Label style={styles.label}>Password</Form.Label>{' '}
+            <Form.Control
               type="password"
+              placeholder="Password"
               name="password"
               value={password}
               onChange={this.handleChange}
-            />
-          </label>
+            ></Form.Control>
+          </Form.Group>
 
-          <button type="submit">Register</button>
-        </form>
+          <Button type="submit">Register</Button>
+        </Form>
       </div>
     );
   }

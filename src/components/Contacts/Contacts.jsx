@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 import styles from './Contacts.module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 
 const Contacts = ({ contacts, onDeleteContact }) => {
   return (
@@ -9,13 +11,13 @@ const Contacts = ({ contacts, onDeleteContact }) => {
       {contacts.map(({ id, name, number }) => (
         <li key={id} className={styles.contactsList}>
           {name}, {number}
-          <button
+          <Button
             className={styles.contactsList__button}
             type="button"
             onClick={() => onDeleteContact(id)}
           >
             Delete
-          </button>
+          </Button>
         </li>
       ))}
     </ul>

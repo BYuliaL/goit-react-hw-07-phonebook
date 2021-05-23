@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const styles = {
   link: {
@@ -6,10 +7,11 @@ const styles = {
     textDecoration: 'none',
     padding: 12,
     fontWeight: 700,
-    color: '#2A363B',
+    color: 'white',
   },
   activeLink: {
-    color: '#E84A5F',
+    color: '#0275d8',
+    fontSize: 'large',
   },
 };
 

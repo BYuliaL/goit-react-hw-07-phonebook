@@ -9,12 +9,15 @@ const styles = {
     fontWeight: 500,
     fontSize: 48,
     textAlign: 'center',
+    color: '#000',
   },
 };
 
 const HomePage = () => (
   <div style={styles.container}>
-    <h1 style={styles.title}>Welcome to your contacts app ^-^ </h1>
+    <h1 style={styles.title}>
+      Your personal phonebook <br /> welcomes you!
+    </h1>
   </div>
 );
 

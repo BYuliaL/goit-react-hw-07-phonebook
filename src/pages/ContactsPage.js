@@ -14,10 +14,9 @@ class ContactsPage extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Phonebook</h2>
+      <div style={{ marginTop: '30px' }}>
         <Form />
-        <h2>Contacts</h2>
+        <h2 style={{ marginTop: '20px', color: '#fff' }}>Contacts</h2>
         <Filter />
         <Contacts />
       </div>

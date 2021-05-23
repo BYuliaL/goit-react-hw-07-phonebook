@@ -2,21 +2,36 @@ import PropTypes from 'prop-types';
 // import styles from './Filter.module.css';
 import { connect } from 'react-redux';
 import { contactsSelectors, changeFilter } from '../../redux/contacts';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form } from 'react-bootstrap';
 
 const styles = {
-  label: {
+  form: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  label: {
+    marginTop: 15,
+    marginBottom: 10,
+    color: '#fff',
+  },
+  input: {
     marginBottom: 15,
+    // maxWidth: '320px',
   },
 };
 
 const Filter = ({ value, onChange }) => {
   return (
-    <label className={styles.label}>
-      Find contacts by name: <br />
-      <input type="text" value={value} onChange={onChange} />
-    </label>
+    <Form style={styles.form}>
+      <Form.Label style={styles.label}>Find contacts by name:</Form.Label>
+      <Form.Control
+        style={styles.input}
+        type="text"
+        value={value}
+        onChange={onChange}
+      ></Form.Control>
+    </Form>
   );
 };
 

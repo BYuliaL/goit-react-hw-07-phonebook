@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authOperations } from '../redux/auth';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Form } from 'react-bootstrap';
 
 const styles = {
+  title: {
+    color: 'white',
+  },
   form: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
-    // width: 320,
   },
   label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
+    color: 'white',
+    fontSize: '16px',
   },
 };
 
@@ -40,35 +43,37 @@ class LoginPage extends Component {
 
     return (
       <div>
-        <h1>Login page</h1>
+        <h1 style={styles.title}>Login page</h1>
 
-        <form
+        <Form
           onSubmit={this.handleSubmit}
           style={styles.form}
           autoComplete="off"
         >
-          <label style={styles.label}>
-            Email
-            <input
+          <Form.Group controlId="formEmail">
+            <Form.Label style={styles.label}>Email </Form.Label>
+            <Form.Control
               type="email"
+              placeholder="Example@mail.com"
               name="email"
               value={email}
               onChange={this.handleChange}
-            />
-          </label>
+            ></Form.Control>
+          </Form.Group>
 
-          <label style={styles.label}>
-            Password
-            <input
+          <Form.Group controlId="formPassword">
+            <Form.Label style={styles.label}>Password</Form.Label>
+            <Form.Control
               type="password"
+              placeholder="Password"
               name="password"
               value={password}
               onChange={this.handleChange}
-            />
-          </label>
+            ></Form.Control>
+          </Form.Group>
 
-          <button type="submit">Log In</button>
-        </form>
+          <Button type="submit">Login</Button>
+        </Form>
       </div>
     );
   }
